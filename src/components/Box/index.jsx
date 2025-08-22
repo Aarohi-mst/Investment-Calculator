@@ -8,6 +8,7 @@ const Box = () => {
     expectedReturn: 6,
     duration: 10,
   });
+  const isInputInvalid = userInput.duration >= 1;
   const handleChange = (inputIdentifier, newValue) => {
     setUserInput((prevValue) => {
       return {
@@ -19,7 +20,11 @@ const Box = () => {
   return (
     <div className="h-auto  w-[40%] border border-white flex flex-col justify-center items-center">
       <Calculation userInput={userInput} handleChange={handleChange} />
-      <List input={userInput} />
+      {isInputInvalid ? (
+        <List input={userInput} />
+      ) : (
+        <p className="center p-4 text-lg">Please enter valid duration!</p>
+      )}
     </div>
   );
 };
